@@ -1,11 +1,18 @@
 ---
 name: manifest:start
-description: Begin work on a feature. Use when the user wants to start working on a feature or says "let's work on X".
+description: Begin work on a feature. MUST be used when the user asks to implement, work on, or build a feature—even if you just created the feature or already have context.
 disable-model-invocation: true
 argument-hint: "[feature name or blank for next]"
 ---
 
 Begin work on a feature.
+
+**IMPORTANT:** This skill MUST be invoked whenever a user asks to implement, work on, or build a feature. This is required even if:
+- You just created the feature yourself
+- You already have the feature details in context
+- The feature state is already 'in_progress'
+
+The `start_feature` tool records that work is beginning and returns the authoritative spec.
 
 ## Arguments
 
@@ -15,7 +22,7 @@ Begin work on a feature.
 
 1. Get the project for the current working directory:
    - Call `list_projects` with `directory_path` set to the current working directory
-   - If no project found, tell the user to run `init_project` first
+   - If no project found, tell the user to run `/manifest:init` first
 
 2. Find the feature to start:
 
@@ -31,10 +38,30 @@ Begin work on a feature.
 3. Start the feature:
    - Call `start_feature` with the feature ID
 
-4. Display the result:
+4. **Set up git branch:**
+   - Check for uncommitted changes: `git status --porcelain`
+   - If there are uncommitted changes, warn the user and ask how to proceed:
+     ```
+     You have uncommitted changes. Should I:
+     1. Stash them (can restore later with `git stash pop`)
+     2. Continue anyway (changes will come with you to the new branch)
+     3. Cancel so you can handle them manually
+     ```
+   - Check current branch: `git branch --show-current`
+   - Determine base branch (usually `main` or `master`)
+   - If not on base branch, switch to it: `git checkout <base>`
+   - Create and checkout feature branch:
+     ```bash
+     git checkout -b feature/<slug>
+     ```
+   - Derive `<slug>` from feature title: lowercase, spaces to hyphens, remove special chars
+     - Example: "OAuth Login" → `feature/oauth-login`
+
+5. Display the result:
    ```
    Started: [Title]
    State: [previous state] → in_progress
+   Branch: feature/[slug] (created from [base branch])
 
    ## Specification
    [Feature details - this is what you're implementing]
@@ -46,11 +73,14 @@ Begin work on a feature.
    [Previous work if any - check before starting fresh]
    ```
 
-5. Remind the user:
+6. Remind the user:
    ```
    When you're done, use /manifest:complete to record your work.
+
+   Tip: Commit early and often with meaningful messages.
    ```
 
 ## Important
 
-**Do not change the feature's target version during implementation.** The version assignment is locked while work is in progress. If a feature needs to be moved to a different version, complete or pause the work first.
+- **Do not change the feature's target version during implementation.** The version assignment is locked while work is in progress. If a feature needs to be moved to a different version, complete or pause the work first.
+- **Always create a feature branch.** Never work directly on main/master.

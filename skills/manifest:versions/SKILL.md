@@ -10,7 +10,7 @@ Display version roadmap for the current project.
 
 1. Get the project for the current working directory:
    - Call `list_projects` with `directory_path` set to the current working directory
-   - If no project found, tell the user to run `init_project` first
+   - If no project found, tell the user to run `/manifest:init` first
 
 2. List versions:
    - Call `list_versions` with the project ID

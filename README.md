@@ -30,12 +30,18 @@ All commands are prefixed with `manifest:`. Type `/manifest:` and autocomplete w
 | `/manifest:next` | Show the highest-priority feature ready for work |
 | `/manifest:feature [query]` | Search and display feature details |
 
+### Setup
+
+| Command | Description |
+|---------|-------------|
+| `/manifest:init` | Initialize Manifest for current directory (creates project + versions) |
+
 ### Workflow
 
 | Command | Description |
 |---------|-------------|
-| `/manifest:start [feature]` | Begin work on a feature (defaults to next priority) |
-| `/manifest:complete` | Complete current work with summary and commits |
+| `/manifest:start [feature]` | **MUST** be used when implementing a feature (creates branch, defaults to next priority) |
+| `/manifest:complete` | Complete current work (commits, PR or merge, records history) |
 | `/manifest:plan` | Interactive feature planning session |
 
 ### Version Management
@@ -56,6 +62,14 @@ All commands are prefixed with `manifest:`. Type `/manifest:` and autocomplete w
 
 ## Typical Workflow
 
+### 0. Initialize (first time only)
+
+```
+/manifest:init
+```
+
+This creates the project, sets up versions (Now/Next/Later), and links your directory.
+
 ### 1. See what exists
 
 ```
@@ -73,6 +87,8 @@ All commands are prefixed with `manifest:`. Type `/manifest:` and autocomplete w
 ```
 /manifest:start
 ```
+
+**Important:** Always use `/manifest:start` before implementing—even if you just created the feature or already have context. This records that work is beginning and returns the authoritative spec.
 
 ### 4. Implement the feature
 

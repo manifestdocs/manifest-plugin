@@ -15,7 +15,7 @@ Assign a feature to a target version.
 
 1. Get the project for the current working directory:
    - Call `list_projects` with `directory_path` set to the current working directory
-   - If no project found, tell the user to run `init_project` first
+   - If no project found, tell the user to run `/manifest:init` first
 
 2. Parse arguments:
    - Extract feature search term and version name from $ARGUMENTS

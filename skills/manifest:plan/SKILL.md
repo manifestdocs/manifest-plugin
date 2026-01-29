@@ -10,7 +10,7 @@ Run an interactive feature planning session.
 
 1. Get the project for the current working directory:
    - Call `list_projects` with `directory_path` set to the current working directory
-   - If no project found, offer to run `init_project` first
+   - If no project found, offer to run `/manifest:init` first
 
 2. Gather input:
    - Ask the user what they want to plan:

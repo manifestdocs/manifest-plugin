@@ -10,19 +10,39 @@ Complete work on the current in-progress feature.
 
 1. Get the project for the current working directory:
    - Call `list_projects` with `directory_path` set to the current working directory
-   - If no project found, tell the user to run `init_project` first
+   - If no project found, tell the user to run `/manifest:init` first
 
 2. Find the in-progress feature:
    - Call `find_features` with `project_id` and `state: "in_progress"`
    - If no in-progress features, tell the user there's nothing to complete
    - If multiple in-progress features, list them and ask which one
 
-3. Gather commit information:
-   - Run `git log --oneline -10` to get recent commits
-   - Present the commits and ask which ones are relevant to this feature
-   - Format: `[sha] [message]`
+3. **Check for uncommitted changes:**
+   - Run `git status --porcelain`
+   - If there are uncommitted changes:
+     ```
+     You have uncommitted changes:
+     [list modified files]
 
-4. Ask for a work summary:
+     Should I commit them now? (y/n)
+     ```
+   - If yes, ask for a commit message and run:
+     ```bash
+     git add -A && git commit -m "<message>"
+     ```
+
+4. Gather commit information:
+   - Determine base branch (`main` or `master`)
+   - Get commits on this branch: `git log <base>..HEAD --oneline`
+   - Present the commits:
+     ```
+     Commits for this feature:
+     [sha1] [message1]
+     [sha2] [message2]
+     ...
+     ```
+
+5. Ask for a work summary:
    ```
    Please provide a summary of the work done on "[Feature Title]".
 
@@ -36,19 +56,77 @@ Complete work on the current in-progress feature.
    - Updated user model with provider field
    ```
 
-5. Complete the feature:
+6. **Determine git workflow:**
+   - Check if user has a saved preference (see "Remembering Preferences" below)
+   - If no saved preference, ask:
+     ```
+     How do you want to finish this feature?
+
+     1. Merge to main (solo project, no review needed)
+     2. Create a pull request (team project, needs review)
+     3. Just record it (leave branch as-is, I'll handle git myself)
+
+     Want me to remember this choice for future features? (y/n)
+     ```
+   - Save preference if requested (in CLAUDE.md or project instructions)
+
+7. **Execute git workflow:**
+
+   **If "Merge to main":**
+   ```bash
+   git checkout <base>
+   git merge --no-ff feature/<slug> -m "Merge feature: <title>"
+   git push origin <base>
+   git branch -d feature/<slug>  # delete local branch
+   ```
+
+   **If "Create a pull request":**
+   ```bash
+   git push -u origin feature/<slug>
+   gh pr create --title "<Feature Title>" --body "## Summary
+   <work summary>
+
+   ## Changes
+   <list of commits>"
+   ```
+   - Display the PR URL to the user
+
+   **If "Just record it":**
+   - Skip git operations, just record in Manifest
+
+8. Complete the feature:
    - Call `complete_feature` with:
      - `feature_id`
      - `summary` from user input
-     - `commits` array with selected commit SHAs and messages
+     - `commits` array with commit SHAs and messages
      - `mark_implemented: true`
 
-6. Display confirmation:
+   **Note:** Mark the feature as implemented when the PR is *created*, not when it's merged. The feature specification is complete once the code exists. PR review is about code quality, not feature completeness. If review feedback changes the feature scope, that's a separate conversation.
+
+9. Display confirmation:
    ```
    Completed: [Title]
    State: in_progress → implemented
 
-   Recorded [N] commits in history.
+   [If merged]: Merged to <base> and pushed.
+   [If PR]: Pull request created: <URL>
+              Feature marked implemented. PR review is for code quality.
+   [If skipped]: Branch feature/<slug> left as-is.
 
-   Summary: [First line of summary]
+   Recorded [N] commits in history.
    ```
+
+## Remembering Preferences
+
+Store the user's git workflow preference so they don't have to answer every time:
+
+- Look for a comment in the project's CLAUDE.md or instructions:
+  ```
+  <!-- manifest:git-workflow=merge -->
+  ```
+  or
+  ```
+  <!-- manifest:git-workflow=pr -->
+  ```
+- If found, use that workflow without asking
+- When user asks to remember, add this comment to the appropriate file
