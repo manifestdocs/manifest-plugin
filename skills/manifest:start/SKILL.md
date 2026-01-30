@@ -37,6 +37,13 @@ The `start_feature` tool records that work is beginning and returns the authorit
 
 3. Start the feature:
    - Call `start_feature` with the feature ID
+   - **If `start_feature` returns an error** (feature has no details):
+     - Display the error message — it includes the expected spec format
+     - Ask the user if they'd like to write a spec now or skip the spec gate
+     - If writing a spec, use `update_feature` with `details` to add the spec, then retry `start_feature`
+   - **If `start_feature` returns a warning** (details exist but lack acceptance criteria):
+     - Display the warning to the user
+     - Continue — this is informational, not blocking
 
 4. **Set up git branch:**
    - Check for uncommitted changes: `git status --porcelain`
@@ -82,5 +89,6 @@ The `start_feature` tool records that work is beginning and returns the authorit
 
 ## Important
 
+- **Specification required for leaf features.** `start_feature` will refuse if a leaf feature has no `details`. Write a spec first using `update_feature`. Parent features (those with children) are exempt.
 - **Do not change the feature's target version during implementation.** The version assignment is locked while work is in progress. If a feature needs to be moved to a different version, complete or pause the work first.
 - **Always create a feature branch.** Never work directly on main/master.

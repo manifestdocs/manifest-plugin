@@ -22,10 +22,16 @@ If a feature is found, show:
 Next up: [Title] ([state])
 Parent: [Parent title if any]
 Priority: [priority number]
+Spec: [spec_status from response]
 
 [Feature details/description]
 
 Ready to start? Use /manifest:start to begin work.
+```
+
+If the response includes `spec_guidance`, show it as a note:
+```
+Note: [spec_guidance text]
 ```
 
 If no feature is found:

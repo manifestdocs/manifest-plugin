@@ -90,6 +90,8 @@ This creates the project, sets up versions (Now/Next/Later), and links your dire
 
 **Important:** Always use `/manifest:start` before implementing—even if you just created the feature or already have context. This records that work is beginning and returns the authoritative spec.
 
+> **Spec gate:** `start_feature` will refuse if a leaf feature has no `details` — write a spec first using `update_feature`. If details exist but lack acceptance criteria, you'll see a warning.
+
 ### 4. Implement the feature
 
 Work on the feature using the specification displayed by `/manifest:start`.
