@@ -46,14 +46,19 @@ Complete work on the current in-progress feature.
    ```
    Please provide a summary of the work done on "[Feature Title]".
 
-   Format: First line is a concise headline. Add details after a blank line if needed.
+   Format: First line is a concise headline. After a blank line, include:
+   - What was implemented
+   - Key decisions made during implementation and why
+   - Any deviations from the original spec and reasoning
+   - Context for the next person working in this area
 
    Example:
    Implemented OAuth login flow
 
-   - Added Google OAuth provider
-   - Created session management
-   - Updated user model with provider field
+   - Added Google OAuth provider using passport.js
+   - Chose session-based auth over JWT (simpler for SSR app)
+   - Deviated from spec: skipped GitHub OAuth (rate limits too restrictive)
+   - Note: refresh token rotation not yet implemented
    ```
 
 6. **Determine git workflow:**
@@ -103,7 +108,9 @@ Complete work on the current in-progress feature.
 
    **Note:** Mark the feature as implemented when the PR is *created*, not when it's merged. The feature specification is complete once the code exists. PR review is about code quality, not feature completeness. If review feedback changes the feature scope, that's a separate conversation.
 
-9. Display confirmation:
+9. **Propagate learnings:** If you discovered something during implementation that applies to sibling features (a shared pattern, convention, or constraint), suggest updating the parent feature's details so future agents inherit it.
+
+10. Display confirmation:
    ```
    Completed: [Title]
    State: in_progress → implemented

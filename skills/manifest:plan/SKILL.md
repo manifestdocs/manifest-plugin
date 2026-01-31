@@ -24,10 +24,14 @@ Run an interactive feature planning session.
      ```
 
 3. Design the feature tree:
-   - Apply the user story test to each feature: "As a [user], I can [capability]..."
+   - Apply the user story test to each leaf feature: "As a [user], I can [capability]..."
    - Name features by capability (e.g., "Router" not "Implement routing")
    - Group related features under parent nodes
    - Assign priorities (lower = implement first)
+   - **Write tier-appropriate details:**
+     - Parent features: shared architectural context, patterns, constraints for children
+     - Leaf features: user story, acceptance criteria (Given/When/Then), constraints
+   - Parent details flow to all children via breadcrumb — put shared decisions there, not in every leaf
 
 4. Present the proposal:
    - Call `plan` with `confirm: false` to get a preview

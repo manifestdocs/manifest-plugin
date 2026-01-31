@@ -64,20 +64,38 @@ The `start_feature` tool records that work is beginning and returns the authorit
    - Derive `<slug>` from feature title: lowercase, spaces to hyphens, remove special chars
      - Example: "OAuth Login" → `feature/oauth-login`
 
-5. Display the result:
+5. Display the result based on the feature tier (check `feature_tier` in the response):
+
+   **For leaf features:**
    ```
    Started: [Title]
    State: [previous state] → in_progress
    Branch: feature/[slug] (created from [base branch])
 
    ## Specification
-   [Feature details - this is what you're implementing]
+   [Feature details — this is what you're implementing]
 
    ## Acceptance Criteria
-   [Any criteria from the feature details]
+   [Criteria from the feature details]
+
+   ## Ancestor Context
+   [Relevant details from breadcrumb — parent conventions, project decisions]
 
    ## History
-   [Previous work if any - check before starting fresh]
+   [Previous work if any — check before starting fresh]
+   ```
+
+   **For feature sets (parent features):**
+   ```
+   Started: [Title] (feature set — [N] children)
+   State: [previous state] → in_progress
+   Branch: feature/[slug]
+
+   ## Shared Context
+   [This feature set's details — conventions, constraints for children]
+
+   ## Children
+   [List child features with states]
    ```
 
 6. Remind the user:
