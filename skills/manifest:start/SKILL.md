@@ -72,11 +72,13 @@ The `start_feature` tool records that work is beginning and returns the authorit
    State: [previous state] → in_progress
    Branch: feature/[slug] (created from [base branch])
 
-   ## Specification
+   ## Feature Details
    [Feature details — this is what you're implementing]
 
-   ## Acceptance Criteria
-   [Criteria from the feature details]
+   If details are sparse, consider fleshing them out before coding:
+   - Goal and constraints (~50-100 words)
+   - Key function signatures (for interface-heavy features)
+   - 1-3 examples of expected behavior (for complex logic)
 
    ## Ancestor Context
    [Relevant details from breadcrumb — parent conventions, project decisions]
@@ -107,6 +109,6 @@ The `start_feature` tool records that work is beginning and returns the authorit
 
 ## Important
 
-- **Specification required for leaf features.** `start_feature` will refuse if a leaf feature has no `details`. Write a spec first using `update_feature`. Parent features (those with children) are exempt.
+- **Leaf features need some details before starting.** `start_feature` will refuse if a leaf feature has no `details`. Write a concise spec (~50-150 words) covering goal, constraints, and key interfaces using `update_feature`. Parent features (those with children) are exempt.
 - **Do not change the feature's target version during implementation.** The version assignment is locked while work is in progress. If a feature needs to be moved to a different version, complete or pause the work first.
 - **Always create a feature branch.** Never work directly on main/master.

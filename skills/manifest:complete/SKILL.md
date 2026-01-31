@@ -108,9 +108,11 @@ Complete work on the current in-progress feature.
 
    **Note:** Mark the feature as implemented when the PR is *created*, not when it's merged. The feature specification is complete once the code exists. PR review is about code quality, not feature completeness. If review feedback changes the feature scope, that's a separate conversation.
 
-9. **Propagate learnings:** If you discovered something during implementation that applies to sibling features (a shared pattern, convention, or constraint), suggest updating the parent feature's details so future agents inherit it.
+9. **Update the feature spec:** Use `update_feature` to update the feature's details to reflect what was actually built. Keep it concise — goal, what was implemented, key interfaces, any deviations from original spec.
 
-10. Display confirmation:
+10. **Propagate learnings:** If you discovered something during implementation that applies to sibling features (a shared pattern, convention, or constraint), suggest updating the parent feature's details so future agents inherit it.
+
+11. Display confirmation:
    ```
    Completed: [Title]
    State: in_progress → implemented

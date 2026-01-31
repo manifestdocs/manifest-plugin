@@ -30,7 +30,7 @@ Run an interactive feature planning session.
    - Assign priorities (lower = implement first)
    - **Write tier-appropriate details:**
      - Parent features: shared architectural context, patterns, constraints for children
-     - Leaf features: user story, acceptance criteria (Given/When/Then), constraints
+     - Leaf features: concise specification — goal, constraints, key interfaces if applicable. ~50-150 words. Skip formal structures like Gherkin.
    - Parent details flow to all children via breadcrumb — put shared decisions there, not in every leaf
 
 4. Present the proposal:
