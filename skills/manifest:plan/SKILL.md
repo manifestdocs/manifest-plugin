@@ -14,6 +14,7 @@ Run an interactive feature planning session.
 
 2. Gather input:
    - Ask the user what they want to plan:
+
      ```
      What would you like to plan?
 
@@ -30,12 +31,13 @@ Run an interactive feature planning session.
    - Assign priorities (lower = implement first)
    - **Write tier-appropriate details:**
      - Parent features: shared architectural context, patterns, constraints for children
-     - Leaf features: concise specification — goal, constraints, key interfaces if applicable. ~50-150 words. Skip formal structures like Gherkin.
+     - Leaf features: specification — goal, constraints, key interfaces if applicable. Length guided by the project's configured ac_level. Skip formal structures like Gherkin.
    - Parent details flow to all children via breadcrumb — put shared decisions there, not in every leaf
 
 4. Present the proposal:
    - Call `plan` with `confirm: false` to get a preview
    - Display the proposed tree:
+
      ```
      Proposed Feature Tree:
 
@@ -54,6 +56,7 @@ Run an interactive feature planning session.
    - If user approves, call `plan` with `confirm: true`
 
 6. Display result:
+
    ```
    Created [N] features.
 

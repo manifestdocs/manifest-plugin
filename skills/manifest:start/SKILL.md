@@ -2,12 +2,13 @@
 name: manifest:start
 description: Begin work on a feature. MUST be used when the user asks to implement, work on, or build a feature—even if you just created the feature or already have context.
 disable-model-invocation: true
-argument-hint: "[feature name or blank for next]"
+argument-hint: '[feature name or blank for next]'
 ---
 
 Begin work on a feature.
 
 **IMPORTANT:** This skill MUST be invoked whenever a user asks to implement, work on, or build a feature. This is required even if:
+
 - You just created the feature yourself
 - You already have the feature details in context
 - The feature state is already 'in_progress'
@@ -67,6 +68,7 @@ The `start_feature` tool records that work is beginning and returns the authorit
 5. Display the result based on the feature tier (check `feature_tier` in the response):
 
    **For leaf features:**
+
    ```
    Started: [Title]
    State: [previous state] → in_progress
@@ -75,8 +77,8 @@ The `start_feature` tool records that work is beginning and returns the authorit
    ## Feature Details
    [Feature details — this is what you're implementing]
 
-   If details are sparse, consider fleshing them out before coding:
-   - Goal and constraints (~50-100 words)
+   If details are sparse, follow the spec_guidance returned by start_feature:
+   - Goal and constraints
    - Key function signatures (for interface-heavy features)
    - 1-3 examples of expected behavior (for complex logic)
 
@@ -88,6 +90,7 @@ The `start_feature` tool records that work is beginning and returns the authorit
    ```
 
    **For feature sets (parent features):**
+
    ```
    Started: [Title] (feature set — [N] children)
    State: [previous state] → in_progress
@@ -101,6 +104,7 @@ The `start_feature` tool records that work is beginning and returns the authorit
    ```
 
 6. Remind the user:
+
    ```
    When you're done, use /manifest:complete to record your work.
 
@@ -109,6 +113,6 @@ The `start_feature` tool records that work is beginning and returns the authorit
 
 ## Important
 
-- **Leaf features need some details before starting.** `start_feature` will refuse if a leaf feature has no `details`. Write a concise spec (~50-150 words) covering goal, constraints, and key interfaces using `update_feature`. Parent features (those with children) are exempt.
+- **Leaf features need some details before starting.** `start_feature` will refuse if a leaf feature has no `details`. Write a spec covering goal, constraints, and key interfaces using `update_feature` — follow the `spec_guidance` returned by the tool for length and structure. Parent features (those with children) are exempt.
 - **Do not change the feature's target version during implementation.** The version assignment is locked while work is in progress. If a feature needs to be moved to a different version, complete or pause the work first.
 - **Always create a feature branch.** Never work directly on main/master.
