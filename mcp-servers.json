@@ -1,8 +1,8 @@
 {
   "mcpServers": {
     "manifest": {
-      "type": "http",
-      "url": "http://localhost:17010/mcp"
+      "command": "manifest",
+      "args": ["mcp"]
     }
   }
 }

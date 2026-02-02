@@ -31,6 +31,7 @@ Initialize Manifest for a new or existing codebase.
      ```
 
 4. **Ask for version naming:**
+
    ```
    What version are you working toward?
 
@@ -60,6 +61,7 @@ Initialize Manifest for a new or existing codebase.
      4. `Backlog` - "Later"
 
 6. **Display summary:**
+
    ```
    Project initialized: [Name]
 
@@ -77,6 +79,7 @@ Initialize Manifest for a new or existing codebase.
 ## Version Naming Helpers
 
 When creating the "Next" version, apply these heuristics:
+
 - `0.1.0` → `0.2.0`
 - `1.0` → `1.1`
 - `v1` → `v2`

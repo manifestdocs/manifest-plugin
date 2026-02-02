@@ -21,6 +21,7 @@ Display version roadmap for the current project.
    - Feature count
 
 Example output:
+
 ```
 Version    Status    Features
 ─────────────────────────────

@@ -2,7 +2,7 @@
 name: manifest:release
 description: Mark a version as released. Use when the user wants to ship a version or mark a milestone as complete.
 disable-model-invocation: true
-argument-hint: "[version name]"
+argument-hint: '[version name]'
 ---
 
 Mark a version as released.
@@ -31,6 +31,7 @@ Mark a version as released.
    - If no unreleased versions, tell the user
 
 4. Show version status:
+
    ```
    Releasing: [version name]
 
@@ -43,6 +44,7 @@ Mark a version as released.
    ```
 
 5. Confirm if there are incomplete features:
+
    ```
    ⚠️ Some features are not yet implemented. Release anyway?
    ```
@@ -51,6 +53,7 @@ Mark a version as released.
    - Call `release_version` with the version ID
 
 7. Display result:
+
    ```
    Released: [version name]
 

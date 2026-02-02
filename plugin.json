@@ -7,5 +7,17 @@
   "keywords": ["features", "documentation", "product-management", "mcp"],
   "claude-code": {
     "min-version": "1.0.0"
+  },
+  "hooks": {
+    "Setup": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/check-install.sh"
+          }
+        ]
+      }
+    ]
   }
 }

@@ -2,7 +2,7 @@
 name: manifest:assign
 description: Assign a feature to a version. Use when the user wants to schedule a feature for a release.
 disable-model-invocation: true
-argument-hint: "[feature] [version]"
+argument-hint: '[feature] [version]'
 ---
 
 Assign a feature to a target version.
@@ -20,6 +20,7 @@ Assign a feature to a target version.
 2. Parse arguments:
    - Extract feature search term and version name from $ARGUMENTS
    - If unclear, ask for clarification:
+
      ```
      Please specify both feature and version:
      /manifest:assign [feature name] [version name]
@@ -40,6 +41,7 @@ Assign a feature to a target version.
    - Call `set_feature_version` with `feature_id` and `version_id`
 
 6. Display result:
+
    ```
    Assigned: [Feature title] → [Version name]
 
@@ -49,5 +51,6 @@ Assign a feature to a target version.
 ## Unassigning
 
 To remove a feature from a version, the user can say "unassign [feature]" and you should:
+
 - Call `set_feature_version` with `feature_id` and `version_id: null`
 - Confirm: "Unassigned: [Feature title] (now in backlog)"

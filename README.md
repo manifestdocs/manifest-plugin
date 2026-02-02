@@ -5,17 +5,19 @@ Living documentation for feature-driven product engineering. Track features as s
 ## Installation
 
 ```bash
-# From the plugin marketplace
+# Install the plugin
 claude plugins install manifest
 
-# Or from local directory
-claude plugins install /path/to/manifest-plugin
+# Install the server (if not already installed)
+brew install rocket-tycoon/tap/manifest
 ```
+
+The plugin will detect if the server is missing on startup and guide you through installation.
 
 ## Requirements
 
 - Claude Code 1.0.0+
-- `manifest-server` installed and available in PATH
+- `manifest` binary in PATH (install via Homebrew)
 
 ## Commands
 
@@ -23,32 +25,32 @@ All commands are prefixed with `manifest:`. Type `/manifest:` and autocomplete w
 
 ### Quick Views
 
-| Command | Description |
-|---------|-------------|
-| `/manifest:tree` | Display feature hierarchy with status symbols |
-| `/manifest:versions` | Show version roadmap (now/next/later) |
-| `/manifest:next` | Show the highest-priority feature ready for work |
-| `/manifest:feature [query]` | Search and display feature details |
+| Command                     | Description                                      |
+| --------------------------- | ------------------------------------------------ |
+| `/manifest:tree`            | Display feature hierarchy with status symbols    |
+| `/manifest:versions`        | Show version roadmap (now/next/later)            |
+| `/manifest:next`            | Show the highest-priority feature ready for work |
+| `/manifest:feature [query]` | Search and display feature details               |
 
 ### Setup
 
-| Command | Description |
-|---------|-------------|
+| Command          | Description                                                            |
+| ---------------- | ---------------------------------------------------------------------- |
 | `/manifest:init` | Initialize Manifest for current directory (creates project + versions) |
 
 ### Workflow
 
-| Command | Description |
-|---------|-------------|
+| Command                     | Description                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------- |
 | `/manifest:start [feature]` | **MUST** be used when implementing a feature (creates branch, defaults to next priority) |
-| `/manifest:complete` | Complete current work (commits, PR or merge, records history) |
-| `/manifest:plan` | Interactive feature planning session |
+| `/manifest:complete`        | Complete current work (commits, PR or merge, records history)                            |
+| `/manifest:plan`            | Interactive feature planning session                                                     |
 
 ### Version Management
 
-| Command | Description |
-|---------|-------------|
-| `/manifest:release [version]` | Mark a version as shipped |
+| Command                                | Description                          |
+| -------------------------------------- | ------------------------------------ |
+| `/manifest:release [version]`          | Mark a version as shipped            |
 | `/manifest:assign [feature] [version]` | Assign a feature to a target version |
 
 ## Feature States
@@ -107,6 +109,7 @@ This records your work summary and links relevant commits to the feature history
 ## Planning Features
 
 Use `/manifest:plan` to interactively design a feature tree from:
+
 - A PRD or spec document
 - A description of capabilities
 - Codebase analysis

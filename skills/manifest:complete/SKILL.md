@@ -20,12 +20,14 @@ Complete work on the current in-progress feature.
 3. **Check for uncommitted changes:**
    - Run `git status --porcelain`
    - If there are uncommitted changes:
+
      ```
      You have uncommitted changes:
      [list modified files]
 
      Should I commit them now? (y/n)
      ```
+
    - If yes, ask for a commit message and run:
      ```bash
      git add -A && git commit -m "<message>"
@@ -43,6 +45,7 @@ Complete work on the current in-progress feature.
      ```
 
 5. Ask for a work summary:
+
    ```
    Please provide a summary of the work done on "[Feature Title]".
 
@@ -64,6 +67,7 @@ Complete work on the current in-progress feature.
 6. **Determine git workflow:**
    - Check if user has a saved preference (see "Remembering Preferences" below)
    - If no saved preference, ask:
+
      ```
      How do you want to finish this feature?
 
@@ -73,11 +77,13 @@ Complete work on the current in-progress feature.
 
      Want me to remember this choice for future features? (y/n)
      ```
+
    - Save preference if requested (in CLAUDE.md or project instructions)
 
 7. **Execute git workflow:**
 
    **If "Merge to main":**
+
    ```bash
    git checkout <base>
    git merge --no-ff feature/<slug> -m "Merge feature: <title>"
@@ -86,6 +92,7 @@ Complete work on the current in-progress feature.
    ```
 
    **If "Create a pull request":**
+
    ```bash
    git push -u origin feature/<slug>
    gh pr create --title "<Feature Title>" --body "## Summary
@@ -94,6 +101,7 @@ Complete work on the current in-progress feature.
    ## Changes
    <list of commits>"
    ```
+
    - Display the PR URL to the user
 
    **If "Just record it":**
@@ -106,24 +114,25 @@ Complete work on the current in-progress feature.
      - `commits` array with commit SHAs and messages
      - `mark_implemented: true`
 
-   **Note:** Mark the feature as implemented when the PR is *created*, not when it's merged. The feature specification is complete once the code exists. PR review is about code quality, not feature completeness. If review feedback changes the feature scope, that's a separate conversation.
+   **Note:** Mark the feature as implemented when the PR is _created_, not when it's merged. The feature specification is complete once the code exists. PR review is about code quality, not feature completeness. If review feedback changes the feature scope, that's a separate conversation.
 
 9. **Update the feature spec:** Use `update_feature` to update the feature's details to reflect what was actually built. Keep it concise — goal, what was implemented, key interfaces, any deviations from original spec.
 
 10. **Propagate learnings:** If you discovered something during implementation that applies to sibling features (a shared pattern, convention, or constraint), suggest updating the parent feature's details so future agents inherit it.
 
 11. Display confirmation:
-   ```
-   Completed: [Title]
-   State: in_progress → implemented
 
-   [If merged]: Merged to <base> and pushed.
-   [If PR]: Pull request created: <URL>
-              Feature marked implemented. PR review is for code quality.
-   [If skipped]: Branch feature/<slug> left as-is.
+```
+Completed: [Title]
+State: in_progress → implemented
 
-   Recorded [N] commits in history.
-   ```
+[If merged]: Merged to <base> and pushed.
+[If PR]: Pull request created: <URL>
+           Feature marked implemented. PR review is for code quality.
+[If skipped]: Branch feature/<slug> left as-is.
+
+Recorded [N] commits in history.
+```
 
 ## Remembering Preferences
 

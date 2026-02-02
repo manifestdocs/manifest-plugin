@@ -2,7 +2,7 @@
 name: manifest:feature
 description: Search for and display feature details. Use when the user wants to find a specific feature or asks about a feature by name.
 disable-model-invocation: true
-argument-hint: "[search query]"
+argument-hint: '[search query]'
 ---
 
 Search for and display feature details.
@@ -22,6 +22,7 @@ Search for and display feature details.
    - If no matches found, tell the user and suggest checking spelling or using `/manifest:tree`
 
 3. If multiple matches, list them and ask which one:
+
    ```
    Found N features matching "[query]":
    1. [Title] ([state])
@@ -34,6 +35,7 @@ Search for and display feature details.
    - Call `get_feature` with `feature_id` and `include_history: true`
 
 5. Display the feature:
+
    ```
    Feature: [Title] ([state])
    Parent: [Parent title if any]

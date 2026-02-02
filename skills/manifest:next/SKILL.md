@@ -18,6 +18,7 @@ Show the next feature to work on.
 3. Display the result:
 
 If a feature is found, show:
+
 ```
 Next up: [Title] ([state])
 Parent: [Parent title if any]
@@ -30,11 +31,13 @@ Ready to start? Use /manifest:start to begin work.
 ```
 
 If the response includes `spec_guidance`, show it as a note:
+
 ```
 Note: [spec_guidance text]
 ```
 
 If no feature is found:
+
 ```
 No workable features found.
 
