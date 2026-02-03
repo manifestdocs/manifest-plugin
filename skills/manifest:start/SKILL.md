@@ -33,7 +33,10 @@ The `start_feature` tool records that work is beginning and returns the authorit
    - If multiple matches, list them and ask which one
 
    **If $ARGUMENTS is blank:**
-   - Call `get_next_feature` with the project ID
+   - First, call `get_active_feature` with the project ID
+   - If a feature is focused, ask: "I see '[title]' is selected in the app. Work on this?"
+   - If the user confirms, use that feature_id
+   - If no focus, or the user declines, call `get_next_feature` with the project ID
    - If no feature found, tell the user there's nothing to work on
 
 3. Start the feature:

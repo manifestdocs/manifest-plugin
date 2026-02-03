@@ -17,7 +17,14 @@ Search for and display feature details.
    - Call `list_projects` with `directory_path` set to the current working directory
    - If no project found, tell the user to run `/manifest:init` first
 
-2. Search for features:
+2. Find the feature:
+
+   **If $ARGUMENTS is blank:**
+   - Call `get_active_feature` with the project ID
+   - If a feature is focused, use that feature_id directly (skip to step 4)
+   - If no focus, tell the user to provide a search query or select a feature in the app
+
+   **If $ARGUMENTS is provided:**
    - Call `find_features` with `project_id` and `query` set to `$ARGUMENTS`
    - If no matches found, tell the user and suggest checking spelling or using `/manifest:tree`
 
