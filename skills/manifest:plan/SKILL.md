@@ -98,7 +98,21 @@ If there are no clarification questions, skip that section.
 - If user wants structural changes, modify and re-present
 - If user approves, call `plan` with `confirm: true`
 
-### 7. Display result
+### 7. Distill the root feature
+
+After creating child features, the source PRD/spec content should NOT remain verbatim on the root. The detailed content has been distributed to children — the root should now hold only high-level project context.
+
+Call `update_feature` on the project's root feature to replace its details with:
+- Project overview (1-2 sentences)
+- Tech stack and key dependencies
+- Architectural decisions and conventions
+- Any cross-cutting constraints
+
+Also provide `details_summary` (~200 words) so breadcrumbs stay concise.
+
+If the root feature had no details (PRD was pasted directly), write project-level context based on what you learned during analysis. If the root already had appropriate high-level content (not a PRD), skip this step.
+
+### 8. Display result
 
 ```
 Created [N] features.
