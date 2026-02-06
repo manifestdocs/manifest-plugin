@@ -48,6 +48,10 @@ The `start_feature` tool records that work is beginning and returns the authorit
    - **If `start_feature` returns a warning** (details exist but lack acceptance criteria):
      - Display the warning to the user
      - Continue — this is informational, not blocking
+   - **If this is a change request** (implemented feature with `desired_details`):
+     - `start_feature` transitions implemented → in_progress and returns guidance
+     - The response includes both `details` (current state) and `desired_details` (what's wanted)
+     - Compare the two to understand what needs to change
 
 4. **Set up git branch:**
    - Check for uncommitted changes: `git status --porcelain`
@@ -69,6 +73,23 @@ The `start_feature` tool records that work is beginning and returns the authorit
      - Example: "OAuth Login" → `feature/oauth-login`
 
 5. Display the result based on the feature tier (check `feature_tier` in the response):
+
+   **For change requests (implemented feature with desired_details):**
+
+   ```
+   Started: [Title] (change request)
+   State: implemented → in_progress
+   Branch: feature/[slug] (created from [base branch])
+
+   ## What Changed
+   [Summary of differences between details and desired_details]
+
+   ## Current Spec (details)
+   [Current implemented state]
+
+   ## Requested Changes (desired_details)
+   [What the user wants changed]
+   ```
 
    **For leaf features:**
 
