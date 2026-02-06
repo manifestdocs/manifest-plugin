@@ -63,6 +63,7 @@ Now structure your analysis into a feature tree:
 - **Write tier-appropriate details:**
   - Parent features: shared architectural context, patterns, constraints for children
   - Leaf features: specification — goal, constraints, key interfaces. Length guided by the project's configured ac_level.
+  - **Never repeat the feature title in the details** — the title is displayed separately in the UI
 - Parent details flow to all children via breadcrumb — put shared decisions there, not in every leaf
 
 ### 5. Present the proposal
