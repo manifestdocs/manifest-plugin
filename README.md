@@ -9,7 +9,7 @@ Living documentation for feature-driven product engineering. Track features as s
 claude plugins install manifest
 
 # Install the server (if not already installed)
-brew install rocket-tycoon/tap/manifest
+brew install manifestdocs/tap/manifest
 ```
 
 The plugin will detect if the server is missing on startup and guide you through installation.
