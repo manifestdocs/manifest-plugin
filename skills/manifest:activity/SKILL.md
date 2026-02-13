@@ -26,4 +26,4 @@ Optional: a feature name or search term to filter activity to that feature and i
    - `feature_id` from step 2 (if applicable)
    - Default limit (20 entries)
 
-4. Display the timeline directly in your response.
+4. Display the returned timeline text DIRECTLY in your response as a code block. Do NOT summarize, reformat, or add commentary around the timeline — it is pre-rendered to mirror the web app's Activity tab.
