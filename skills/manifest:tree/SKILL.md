@@ -18,6 +18,7 @@ Display the feature tree for the current project.
 
 3. Display the ASCII tree directly in your response with the legend:
    - ◇ proposed
+   - ⊘ blocked
    - ○ in_progress
    - ● implemented
-   - ✗ deprecated
+   - ✗ archived

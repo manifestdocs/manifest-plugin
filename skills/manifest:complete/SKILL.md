@@ -114,6 +114,7 @@ Complete work on the current in-progress feature.
      - `commits` array with commit SHAs and messages
      - `mark_implemented: true`
    - `complete_feature` automatically clears `desired_details` if present (change request fulfilled)
+   - When a feature is marked as implemented, any features blocked by it are automatically checked — if all their blockers are now implemented, they auto-transition from `blocked` to `proposed`
 
    **Note:** Mark the feature as implemented when the PR is _created_, not when it's merged. The feature specification is complete once the code exists. PR review is about code quality, not feature completeness. If review feedback changes the feature scope, that's a separate conversation.
 
