@@ -9,7 +9,7 @@
 # 4. Otherwise → print manual install instructions
 
 SERVER_URL="http://localhost:17010"
-BREW_FORMULA="rocket-tycoon/tap/manifest"
+BREW_FORMULA="manifestdocs/tap/manifest"
 
 # 1. Server already running?
 if curl -sf "$SERVER_URL/health" > /dev/null 2>&1; then
@@ -58,7 +58,7 @@ Manifest server is not installed.
 
 Install with Homebrew:
 
-  brew install rocket-tycoon/tap/manifest
+  brew install manifestdocs/tap/manifest
   manifest serve
 
 Or download from: https://github.com/manifestdocs/manifest/releases
