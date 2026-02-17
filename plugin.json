@@ -1,6 +1,6 @@
 {
   "name": "manifest",
-  "version": "0.4.5",
+  "version": "0.5.0",
   "description": "Living documentation for feature-driven product engineering. Track features as system capabilities, not work items.",
   "author": "Alastair",
   "repository": "https://github.com/alastair/manifest",
