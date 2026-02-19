@@ -5,18 +5,29 @@ Living documentation for feature-driven product engineering. Track features as s
 ## Installation
 
 ```bash
-# Install the plugin
-claude plugins install manifest
-
 # Install the server (if not already installed)
 brew install manifestdocs/tap/manifest
+```
+
+Then install the plugin inside Claude Code:
+
+```
+/plugin marketplace add manifestdocs/manifest
+/plugin install manifest@manifestdocs-manifest
+```
+
+Or from the command line:
+
+```bash
+claude plugin marketplace add manifestdocs/manifest
+claude plugin install manifest@manifestdocs-manifest --scope user
 ```
 
 The plugin will detect if the server is missing on startup and guide you through installation.
 
 ## Requirements
 
-- Claude Code 1.0.0+
+- Claude Code 1.0.33+
 - `manifest` binary in PATH (install via Homebrew)
 
 ## Commands
