@@ -12,15 +12,15 @@ brew install manifestdocs/tap/manifest
 Then install the plugin inside Claude Code:
 
 ```
-/plugin marketplace add manifestdocs/manifest
-/plugin install manifest@manifestdocs-manifest
+/plugin marketplace add manifestdocs/claude-plugins
+/plugin install manifest@manifest-plugins
 ```
 
 Or from the command line:
 
 ```bash
-claude plugin marketplace add manifestdocs/manifest
-claude plugin install manifest@manifestdocs-manifest --scope user
+claude plugin marketplace add manifestdocs/claude-plugins
+claude plugin install manifest@manifest-plugins --scope user
 ```
 
 The plugin will detect if the server is missing on startup and guide you through installation.
@@ -42,6 +42,7 @@ All commands are prefixed with `manifest:`. Type `/manifest:` and autocomplete w
 | `/manifest:versions`        | Show version roadmap (now/next/later)            |
 | `/manifest:next`            | Show the highest-priority feature ready for work |
 | `/manifest:feature [query]` | Search and display feature details               |
+| `/manifest:activity`        | Show recent activity timeline for the project     |
 
 ### Setup
 
@@ -68,9 +69,10 @@ All commands are prefixed with `manifest:`. Type `/manifest:` and autocomplete w
 
 ```
 ◇ proposed     - In the backlog, not yet started
+⊘ blocked      - Waiting on other features to be implemented
 ○ in_progress  - Actively being worked on
 ● implemented  - Complete and documented
-✗ deprecated   - No longer active
+✗ archived     - No longer active
 ```
 
 ## Typical Workflow
@@ -145,11 +147,11 @@ Versions organize features into releases:
 
 The plugin also exposes MCP tools for programmatic access:
 
-**Discovery:** `list_projects`, `find_features`, `get_feature`, `render_feature_tree`
+**Discovery:** `list_projects`, `get_project_instructions`, `find_features`, `get_feature`, `get_active_feature`, `render_feature_tree`, `get_project_history`
 
 **Setup:** `init_project`, `add_project_directory`, `plan`, `create_feature`
 
-**Work:** `start_feature`, `complete_feature`, `get_next_feature`
+**Work:** `start_feature`, `complete_feature`, `get_next_feature`, `update_feature`, `delete_feature`
 
 **Versions:** `list_versions`, `create_version`, `set_feature_version`, `release_version`
 
