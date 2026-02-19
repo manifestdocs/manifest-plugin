@@ -2,11 +2,19 @@
   "name": "manifest",
   "version": "0.5.0",
   "description": "Living documentation for feature-driven product engineering. Track features as system capabilities, not work items.",
-  "author": "Alastair",
+  "author": {
+    "name": "Manifest",
+    "url": "https://github.com/manifestdocs"
+  },
   "repository": "https://github.com/manifestdocs/manifest-plugin",
-  "keywords": ["features", "documentation", "product-management", "mcp"],
-  "claude-code": {
-    "min-version": "1.0.0"
+  "homepage": "https://github.com/manifestdocs/manifest",
+  "license": "MIT",
+  "keywords": ["features", "documentation", "product-management", "mcp", "ai-agents"],
+  "mcpServers": {
+    "manifest": {
+      "type": "http",
+      "url": "http://localhost:17010/mcp"
+    }
   },
   "hooks": {
     "Setup": [
