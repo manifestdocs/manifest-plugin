@@ -1,5 +1,5 @@
 ---
-name: manifest:init
+name: init
 description: Initialize Manifest for the current project. Sets up project, versions, and optionally imports existing features.
 disable-model-invocation: true
 ---
@@ -16,6 +16,20 @@ Initialize Manifest for a new or existing codebase.
      Use /manifest:tree to see features or /manifest:plan to add new ones.
      ```
    - Exit early if already initialized
+   - If no project found for this directory, call `list_projects` (no filter) to check for existing projects
+   - If existing projects are found, ask:
+     ```
+     Found existing project(s): [list names]
+
+     Is this directory part of one of these projects (monorepo)?
+     1. Yes, add it to [project name]
+     2. No, create a new project
+     ```
+   - If the user picks an existing project, call `add_project_directory` with `project_id` and `path` set to the current working directory, then exit early with:
+     ```
+     Linked [directory] to project "[Name]".
+     Use /manifest:tree to see features.
+     ```
 
 2. **Analyze the codebase:**
    - Call `init_project` with `directory_path` set to the current working directory

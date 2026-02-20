@@ -1,5 +1,5 @@
 ---
-name: manifest:start
+name: start
 description: Begin work on a feature. MUST be used when the user asks to implement, work on, or build a feature—even if you just created the feature or already have context.
 disable-model-invocation: true
 argument-hint: '[feature name or blank for next]'
@@ -24,6 +24,7 @@ The `start_feature` tool records that work is beginning and returns the authorit
 1. Get the project for the current working directory:
    - Call `list_projects` with `directory_path` set to the current working directory
    - If no project found, tell the user to run `/manifest:init` first
+   - If an MCP connection error occurs, the server is not running — tell the user to start it with `manifest serve`
 
 2. Find the feature to start:
 

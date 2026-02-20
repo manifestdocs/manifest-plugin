@@ -1,5 +1,5 @@
 ---
-name: manifest:plan
+name: plan
 description: Interactive feature planning session. Use when the user wants to plan features, break down a PRD, or design the feature tree.
 disable-model-invocation: true
 ---
@@ -12,6 +12,7 @@ Run an interactive feature planning session using structured reasoning phases.
 
 - Call `list_projects` with `directory_path` set to the current working directory
 - If no project found, offer to run `/manifest:init` first
+- If an MCP connection error occurs, the server is not running — tell the user to start it with `manifest serve`
 - Call `get_project_instructions` to read the project's tech stack, conventions, and architectural decisions
 - Call `render_feature_tree` to see what features already exist
 - This context constrains your decomposition — don't propose features that duplicate existing ones, and respect established patterns
@@ -28,6 +29,12 @@ Options:
 - Describe the capabilities you want to add
 - Say "analyze" to let me examine the codebase
 ```
+
+**If the user says "analyze":**
+- Call `generate_feature_tree` with `directory_path` set to the current working directory
+- This scans git history and code structure to discover existing capabilities
+- Use the returned markdown as input for the analysis phases below
+- Tell the user: "Analyzed codebase. Found [N] capability areas. Proposing feature tree..."
 
 ### 3. Analyze — Structured reasoning before designing
 

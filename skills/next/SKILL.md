@@ -1,5 +1,5 @@
 ---
-name: manifest:next
+name: next
 description: Show the highest-priority feature ready for work. Use when the user asks "what should I work on?" or wants to find the next task.
 disable-model-invocation: true
 ---
@@ -11,6 +11,7 @@ Show the next feature to work on.
 1. Get the project for the current working directory:
    - Call `list_projects` with `directory_path` set to the current working directory
    - If no project found, tell the user to run `/manifest:init` first
+   - If an MCP connection error occurs, the server is not running — tell the user to start it with `manifest serve`
 
 2. Get the next workable feature:
    - Call `get_next_feature` with the project ID

@@ -1,5 +1,5 @@
 ---
-name: manifest:assign
+name: assign
 description: Assign a feature to a version. Use when the user wants to schedule a feature for a release.
 disable-model-invocation: true
 argument-hint: '[feature] [version]'
@@ -16,6 +16,7 @@ Assign a feature to a target version.
 1. Get the project for the current working directory:
    - Call `list_projects` with `directory_path` set to the current working directory
    - If no project found, tell the user to run `/manifest:init` first
+   - If an MCP connection error occurs, the server is not running — tell the user to start it with `manifest serve`
 
 2. Parse arguments:
    - Extract feature search term and version name from $ARGUMENTS
@@ -44,8 +45,6 @@ Assign a feature to a target version.
 
    ```
    Assigned: [Feature title] → [Version name]
-
-   [Version name] now has [N] features.
    ```
 
 ## Unassigning

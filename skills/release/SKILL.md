@@ -1,5 +1,5 @@
 ---
-name: manifest:release
+name: release
 description: Mark a version as released. Use when the user wants to ship a version or mark a milestone as complete.
 disable-model-invocation: true
 argument-hint: '[version name]'
@@ -16,6 +16,7 @@ Mark a version as released.
 1. Get the project for the current working directory:
    - Call `list_projects` with `directory_path` set to the current working directory
    - If no project found, tell the user to run `/manifest:init` first
+   - If an MCP connection error occurs, the server is not running — tell the user to start it with `manifest serve`
 
 2. Get versions:
    - Call `list_versions` with the project ID

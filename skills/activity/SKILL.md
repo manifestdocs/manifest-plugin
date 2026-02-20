@@ -1,5 +1,5 @@
 ---
-name: manifest:activity
+name: activity
 description: Show recent activity timeline for the current project. Use when the user asks "what happened?", "recent activity", or "show history".
 disable-model-invocation: true
 ---
@@ -15,6 +15,7 @@ Optional: a feature name or search term to filter activity to that feature and i
 1. Get the project for the current working directory:
    - Call `list_projects` with `directory_path` set to the current working directory
    - If no project found, tell the user to run `/manifest:init` first
+   - If an MCP connection error occurs, the server is not running — tell the user to start it with `manifest serve`
 
 2. If arguments were provided, search for the feature:
    - Call `find_features` with `project_id` and `query` set to the arguments

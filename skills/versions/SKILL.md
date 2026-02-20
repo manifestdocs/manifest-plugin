@@ -1,5 +1,5 @@
 ---
-name: manifest:versions
+name: versions
 description: Show the version roadmap with release planning context. Use when the user asks about versions, releases, or milestones.
 disable-model-invocation: true
 ---
@@ -11,6 +11,7 @@ Display version roadmap for the current project.
 1. Get the project for the current working directory:
    - Call `list_projects` with `directory_path` set to the current working directory
    - If no project found, tell the user to run `/manifest:init` first
+   - If an MCP connection error occurs, the server is not running — tell the user to start it with `manifest serve`
 
 2. List versions:
    - Call `list_versions` with the project ID
