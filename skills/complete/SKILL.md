@@ -113,7 +113,6 @@ Complete work on the current in-progress feature.
      - `feature_id`
      - `summary` from user input
      - `commits` array with commit SHAs and messages
-     - `mark_implemented: true`
    - `complete_feature` automatically clears `desired_details` if present (change request fulfilled)
    - When a feature is marked as implemented, any features blocked by it are automatically checked — if all their blockers are now implemented, they auto-transition from `blocked` to `proposed`
 
