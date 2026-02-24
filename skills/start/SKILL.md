@@ -138,7 +138,7 @@ The `start_feature` tool records that work is beginning and returns the authorit
 
 ## Important
 
-- **Leaf features need some details before starting.** `start_feature` will refuse if a leaf feature has no `details`. Write a spec covering goal, constraints, and key interfaces using `update_feature` — follow the `spec_guidance` returned by the tool for length and structure. Parent features (those with children) are exempt.
+- **Leaf features need some details before starting.** `start_feature` will refuse if a leaf feature has no `details`. Write a focused spec (50-150 words) covering intent, constraints, and acceptance criteria using `update_feature` — follow the `spec_guidance` returned by the tool. Do not include file paths, directory structure, or implementation approach — agents discover these from the codebase. Parent features (those with children) are exempt.
 - **Blocked features cannot be started.** `start_feature` will refuse if the feature is in the `blocked` state, or if any ancestor feature set is blocked. The error message includes which features are blocking it.
 - **Do not change the feature's target version during implementation.** The version assignment is locked while work is in progress. If a feature needs to be moved to a different version, complete or pause the work first.
 - **Always create a feature branch.** Never work directly on main/master.

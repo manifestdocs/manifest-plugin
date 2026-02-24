@@ -69,7 +69,7 @@ Now structure your analysis into a feature tree:
 - Assign priorities (lower = implement first)
 - **Write tier-appropriate details:**
   - Parent features: shared architectural context, patterns, constraints for children
-  - Leaf features: specification — goal, constraints, key interfaces. Length guided by the project's configured ac_level.
+  - Leaf features: focused specification (50-150 words) — intent, constraints, acceptance criteria. Write what agents cannot discover from code (business rules, edge cases, product intent). Do NOT include file paths, directory layouts, or implementation approach.
   - **Never repeat the feature title in the details** — the title is displayed separately in the UI
 - Parent details flow to all children via breadcrumb — put shared decisions there, not in every leaf
 
