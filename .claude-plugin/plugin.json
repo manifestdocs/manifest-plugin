@@ -11,7 +11,7 @@
   "license": "MIT",
   "keywords": ["features", "documentation", "product-management", "mcp", "ai-agents"],
   "mcpServers": {
-    "manifest": {
+    "mcp": {
       "type": "http",
       "url": "http://localhost:17010/mcp"
     }
