@@ -108,7 +108,15 @@ Complete work on the current in-progress feature.
    **If "Just record it":**
    - Skip git operations, just record in Manifest
 
-8. Complete the feature:
+8. **Record test evidence (if not already done during implementation):**
+   - If the project has a testing policy (check `testing_guidance` from `start_feature`):
+     - Run the test suite if not already run
+     - Call `prove_feature` with the test command, exit code, and structured results
+     - Include `{ name, suite, state, file, line, duration_ms, message }` for each test
+     - The agent is the adapter: parse any framework's output into this format
+   - Skip if `prove_feature` was already called during implementation (e.g., TDD red/green cycle)
+
+9. Complete the feature:
    - Call `complete_feature` with:
      - `feature_id`
      - `summary` from user input
@@ -118,11 +126,11 @@ Complete work on the current in-progress feature.
 
    **Note:** Mark the feature as implemented when the PR is _created_, not when it's merged. The feature specification is complete once the code exists. PR review is about code quality, not feature completeness. If review feedback changes the feature scope, that's a separate conversation.
 
-9. **Update the feature spec:** Use `update_feature` to update the feature's details to reflect what was actually built. Keep it concise — goal, what was implemented, key interfaces, any deviations from original spec. For change requests, make sure `details` reflects the new state (since `desired_details` will be cleared automatically).
+10. **Update the feature spec:** Use `update_feature` to update the feature's details to reflect what was actually built. Keep it concise — goal, what was implemented, key interfaces, any deviations from original spec. For change requests, make sure `details` reflects the new state (since `desired_details` will be cleared automatically).
 
-10. **Propagate learnings:** If you discovered something during implementation that applies to sibling features (a shared pattern, convention, or constraint), suggest updating the parent feature's details so future agents inherit it.
+11. **Propagate learnings:** If you discovered something during implementation that applies to sibling features (a shared pattern, convention, or constraint), suggest updating the parent feature's details so future agents inherit it.
 
-11. Display confirmation:
+12. Display confirmation:
 
 ```
 Completed: [Title]

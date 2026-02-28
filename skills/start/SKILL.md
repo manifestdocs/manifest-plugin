@@ -107,6 +107,10 @@ The `start_feature` tool records that work is beginning and returns the authorit
    - Key function signatures (for interface-heavy features)
    - 1-3 examples of expected behavior (for complex logic)
 
+   ## Testing
+   [If testing_guidance is present, display it]
+   [If testing_policy is "tdd": remind the user about the red/green cycle with prove_feature]
+
    ## Ancestor Context
    [Relevant details from breadcrumb — parent conventions, project decisions]
 
@@ -140,5 +144,6 @@ The `start_feature` tool records that work is beginning and returns the authorit
 
 - **Leaf features need some details before starting.** `start_feature` will refuse if a leaf feature has no `details`. Write a focused spec (50-150 words) covering intent, constraints, and acceptance criteria using `update_feature` — follow the `spec_guidance` returned by the tool. Do not include file paths, directory structure, or implementation approach — agents discover these from the codebase. Parent features (those with children) are exempt.
 - **Blocked features cannot be started.** `start_feature` will refuse if the feature is in the `blocked` state, or if any ancestor feature set is blocked. The error message includes which features are blocking it.
+- **Claim conflict detection.** If another agent has already claimed this feature, `start_feature` returns a conflict warning showing who claimed it, when, and their metadata (branch name, worktree path, etc.). To proceed anyway, call `start_feature` with `force=true`. The `agent_type` parameter (default: "claude") identifies which agent is claiming the feature.
 - **Do not change the feature's target version during implementation.** The version assignment is locked while work is in progress. If a feature needs to be moved to a different version, complete or pause the work first.
 - **Always create a feature branch.** Never work directly on main/master.
