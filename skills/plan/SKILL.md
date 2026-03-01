@@ -69,8 +69,24 @@ Now structure your analysis into a feature tree:
 - Assign priorities (lower = implement first)
 - **Write tier-appropriate details:**
   - Parent features: shared architectural context, patterns, constraints for children
-  - Leaf features: focused specification (50-150 words) — intent, constraints, acceptance criteria. Write what agents cannot discover from code (business rules, edge cases, product intent). Do NOT include file paths, directory layouts, or implementation approach.
+  - Leaf features: focused specification (50-150 words) with this structure:
+    1. **User story** opening line: "As a [user], I can [capability] so that [benefit]."
+    2. Brief context (1-2 sentences): key behavior, constraints, or edge cases.
+    3. **Acceptance criteria** as checkbox items (3-5): concrete assertions verifiable in specs and tests.
+  - Write what agents cannot discover from code (business rules, edge cases, product intent). Do NOT include file paths, directory layouts, or implementation approach.
   - **Never repeat the feature title in the details** — the title is displayed separately in the UI
+
+  Example of a good leaf spec:
+
+  > As a user, I can mark a todo as complete so that I can track my progress.
+  >
+  > Tapping the checkbox next to a todo toggles its completed state. Completed todos display with strikethrough styling.
+  >
+  > - [ ] Checkbox appears to the left of each todo item
+  > - [ ] Clicking the checkbox toggles the `completed` boolean
+  > - [ ] Completed todos render with line-through text decoration
+  > - [ ] Toggling is immediate — no confirmation dialog
+
 - Parent details flow to all children via breadcrumb — put shared decisions there, not in every leaf
 
 ### 5. Present the proposal
