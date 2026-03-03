@@ -136,11 +136,24 @@ Also provide `details_summary` (~200 words) so breadcrumbs stay concise.
 
 If the root feature had no details (PRD was pasted directly), write project-level context based on what you learned during analysis. If the root already had appropriate high-level content (not a PRD), skip this step.
 
-### 8. Display result
+### 8. Create versions and distribute features
+
+Features should be organized into shippable increments, not dumped into a single version:
+
+1. Create semantic versions with `create_version` (e.g., 0.1.0, 0.2.0, 0.3.0)
+2. Assign features to versions using `set_feature_version`, grouping by delivery phase:
+   - **0.1.0**: Foundational features — project setup, core models, basic CRUD
+   - **0.2.0**: Features that build on 0.1.0 — validation, relationships, business logic
+   - **0.3.0+**: Advanced features — optimization, integrations, polish
+3. Each version should be a shippable increment — avoid splitting tightly-coupled features across versions
+4. Features with dependencies should land in the same version or in order (dependency first)
+
+### 9. Display result
 
 ```
-Created [N] features.
+Created [N] features across [M] versions.
 
+Use /manifest:versions to see the release roadmap.
 Use /manifest:tree to see the full hierarchy.
 Use /manifest:start to begin work on the first feature.
 ```
