@@ -140,13 +140,14 @@ If the root feature had no details (PRD was pasted directly), write project-leve
 
 Features should be organized into shippable increments, not dumped into a single version:
 
-1. Create semantic versions with `create_version` (e.g., 0.1.0, 0.2.0, 0.3.0)
-2. Assign features to versions using `set_feature_version`, grouping by delivery phase:
-   - **0.1.0**: Foundational features — project setup, core models, basic CRUD
-   - **0.2.0**: Features that build on 0.1.0 — validation, relationships, business logic
-   - **0.3.0+**: Advanced features — optimization, integrations, polish
-3. Each version should be a shippable increment — avoid splitting tightly-coupled features across versions
-4. Features with dependencies should land in the same version or in order (dependency first)
+1. Call `list_versions` first — if versions already exist, build on them rather than starting from scratch
+2. Assess scope: a simple app (1-10 features) may need just one version; a complex app needs multiple
+   versions that build incrementally from MVP to full-featured
+3. Create versions with `create_version` using semantic versioning. For new projects, start at 0.1.0.
+   For existing projects, continue from the latest version.
+4. Assign features to versions using `set_feature_version`. Think about dependency order — features that
+   others depend on must ship first. Group tightly-coupled features in the same version.
+5. Each version should be a shippable increment that delivers usable value on its own
 
 ### 9. Display result
 

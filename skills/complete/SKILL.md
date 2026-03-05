@@ -118,6 +118,7 @@ Complete work on the current in-progress feature.
 
 9. **Update the feature spec:** Use `update_feature` to update the feature's details to reflect what was actually built. Keep it concise — goal, what was implemented, key interfaces, any deviations from original spec. For change requests, make sure `details` reflects the new state (since `desired_details` will be cleared automatically).
    - **Note:** `complete_feature` returns warnings when the spec hasn't been updated since `start_feature` — always update details first
+   - **TIP — Live progress:** For the best user experience, call `update_feature` after completing each acceptance criterion to tick its checkbox (`- [ ]` → `- [x]`). Each call triggers a real-time UI refresh, so the user sees progress as it happens. This is optional — batch-updating at the end works too.
 
 10. Complete the feature:
    - Call `complete_feature` with:
