@@ -39,7 +39,7 @@ Mark a version as released.
    Features in this version:
    - [Feature 1] (● implemented)
    - [Feature 2] (● implemented)
-   - [Feature 3] (○ in_progress) ⚠️
+   - [Feature 3] (○ in_progress) [!]
 
    [N] features implemented, [M] still in progress.
    ```
@@ -47,7 +47,7 @@ Mark a version as released.
 5. Confirm if there are incomplete features:
 
    ```
-   ⚠️ Some features are not yet implemented. Release anyway?
+   WARNING: Some features are not yet implemented. Release anyway?
    ```
 
 6. Release the version:
