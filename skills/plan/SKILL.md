@@ -8,19 +8,37 @@ Run an interactive feature planning session using structured reasoning phases.
 
 ## Steps
 
-### 1. Orient — Understand the project context
+### 1. Orient -- Understand the project context
 
 - Call `list_projects` with `directory_path` set to the current working directory
 - If no project found, offer to run `/manifest:init` first
-- If an MCP connection error occurs, the server is not running — tell the user to start it with `manifest serve`
+- If an MCP connection error occurs, the server is not running -- tell the user to start it with `manifest serve`
 - Call `get_project_instructions` to read the project's tech stack, conventions, and architectural decisions
 - Call `render_feature_tree` to see what features already exist
-- This context constrains your decomposition — don't propose features that duplicate existing ones, and respect established patterns
+- This context constrains your decomposition -- don't propose features that duplicate existing ones, and respect established patterns
 
 ### 2. Gather input
 
-Ask the user what they want to plan:
+Check if the conversation contains initialization context from `/manifest:init` (look for "Initialization context:" with classification, since, and focused_directories fields).
 
+**If classification is `greenfield`:**
+- Do NOT offer the "analyze" option (there's nothing to analyze)
+- Prompt:
+  ```
+  What would you like to plan?
+
+  Options:
+  - Paste a PRD, spec, or feature description
+  - Describe the capabilities you want to add
+  ```
+
+**If classification is `large` with `since` or `focused_directories`:**
+- When the user picks "analyze", pass `since` to `generate_feature_tree`
+- If `focused_directories` is set, run `generate_feature_tree` per focused directory
+- Show: "Analyzing [scope]..." instead of "Analyzing codebase..."
+- Otherwise offer the standard options below
+
+**Default (small/medium or no init context):**
 ```
 What would you like to plan?
 
@@ -36,25 +54,25 @@ Options:
 - Use the returned markdown as input for the analysis phases below
 - Tell the user: "Analyzed codebase. Found [N] capability areas. Proposing feature tree..."
 
-### 3. Analyze — Structured reasoning before designing
+### 3. Analyze -- Structured reasoning before designing
 
 Work through these phases in order. Do your reasoning internally, but surface the results.
 
 **Phase A: Extract explicit capabilities.**
-Read the input and list every capability the user explicitly described. These are the "happy path" features — what the user knows they want.
+Read the input and list every capability the user explicitly described. These are the "happy path" features -- what the user knows they want.
 
 **Phase B: Infer implied capabilities.**
 This is the critical step. For each explicit capability, ask: "What else must the system be able to do for this to work?" Look for:
 - Capabilities the user assumes exist but didn't mention (e.g., "user uploads a file" implies the system can store and serve files)
-- Cross-cutting concerns that apply to multiple features (e.g., authorization, validation, error handling) — these belong in parent-level context, not as separate features
+- Cross-cutting concerns that apply to multiple features (e.g., authorization, validation, error handling) -- these belong in parent-level context, not as separate features
 - Enabling capabilities that must exist first (e.g., "invite a team member" implies user management exists)
 
-Important: Inferred items should be *capabilities*, not implementation tasks. "File Storage" is a capability. "Configure S3 bucket" is a task — put that in the feature's spec, not as a separate feature.
+Important: Inferred items should be *capabilities*, not implementation tasks. "File Storage" is a capability. "Configure S3 bucket" is a task -- put that in the feature's spec, not as a separate feature.
 
 **Phase C: Flag ambiguity.**
 Scan for anything that is vague, subjective, or underspecified. Collect these as clarification questions. Common triggers:
-- Subjective terms: "fast", "seamless", "robust", "intuitive" — what does the user actually mean?
-- Unstated scope: "social login" — which providers? "notifications" — email, push, in-app?
+- Subjective terms: "fast", "seamless", "robust", "intuitive" -- what does the user actually mean?
+- Unstated scope: "social login" -- which providers? "notifications" -- email, push, in-app?
 - Missing constraints: no mention of performance requirements, data limits, or supported platforms
 - Contradictions or tensions between stated requirements
 
@@ -74,7 +92,7 @@ Now structure your analysis into a feature tree:
     2. Brief context (1-2 sentences): key behavior, constraints, or edge cases.
     3. **Acceptance criteria** as checkbox items (3-5): concrete assertions verifiable in specs and tests.
   - Write what agents cannot discover from code (business rules, edge cases, product intent). Do NOT include file paths, directory layouts, or implementation approach.
-  - **Never repeat the feature title in the details** — the title is displayed separately in the UI
+  - **Never repeat the feature title in the details** -- the title is displayed separately in the UI
 
   Example of a good leaf spec:
 
@@ -85,9 +103,9 @@ Now structure your analysis into a feature tree:
   > - [ ] Checkbox appears to the left of each todo item
   > - [ ] Clicking the checkbox toggles the `completed` boolean
   > - [ ] Completed todos render with line-through text decoration
-  > - [ ] Toggling is immediate — no confirmation dialog
+  > - [ ] Toggling is immediate -- no confirmation dialog
 
-- Parent details flow to all children via breadcrumb — put shared decisions there, not in every leaf
+- Parent details flow to all children via breadcrumb -- put shared decisions there, not in every leaf
 
 ### 5. Present the proposal
 
@@ -98,11 +116,11 @@ Display the proposed tree, then any clarification questions:
 ```
 Proposed Feature Tree:
 
-◇ [Parent Feature]
-│  [Description]
-├── ◇ [Child Feature 1] (priority: 1)
-│      [Description]
-└── ◇ [Child Feature 2] (priority: 2)
+* [Parent Feature]
+|  [Description]
++-- * [Child Feature 1] (priority: 1)
+|      [Description]
+\-- * [Child Feature 2] (priority: 2)
         [Description]
 
 Clarification needed:
@@ -124,7 +142,7 @@ If there are no clarification questions, skip that section.
 
 ### 7. Distill the root feature
 
-After creating child features, the source PRD/spec content should NOT remain verbatim on the root. The detailed content has been distributed to children — the root should now hold only high-level project context.
+After creating child features, the source PRD/spec content should NOT remain verbatim on the root. The detailed content has been distributed to children -- the root should now hold only high-level project context.
 
 Call `update_feature` on the project's root feature to replace its details with:
 - Project overview (1-2 sentences)
@@ -140,12 +158,12 @@ If the root feature had no details (PRD was pasted directly), write project-leve
 
 Features should be organized into shippable increments, not dumped into a single version:
 
-1. Call `list_versions` first — if versions already exist, build on them rather than starting from scratch
+1. Call `list_versions` first -- if versions already exist (e.g., from `/manifest:init`), build on them rather than creating duplicates
 2. Assess scope: a simple app (1-10 features) may need just one version; a complex app needs multiple
    versions that build incrementally from MVP to full-featured
-3. Create versions with `create_version` using semantic versioning. For new projects, start at 0.1.0.
+3. If no versions exist, create them with `create_version` using semantic versioning. For new projects, start at 0.1.0.
    For existing projects, continue from the latest version.
-4. Assign features to versions using `set_feature_version`. Think about dependency order — features that
+4. Assign features to versions using `set_feature_version`. Think about dependency order -- features that
    others depend on must ship first. Group tightly-coupled features in the same version.
 5. Each version should be a shippable increment that delivers usable value on its own
 
