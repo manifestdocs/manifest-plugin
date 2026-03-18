@@ -8,7 +8,7 @@
 # 3. If Homebrew is available → install via brew, then start
 # 4. Otherwise → print manual install instructions
 
-SERVER_URL="http://localhost:17010"
+SERVER_URL="http://localhost:4242"
 BREW_FORMULA="manifestdocs/tap/manifest"
 
 # 1. Server already running?

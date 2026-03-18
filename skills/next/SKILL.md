@@ -37,6 +37,10 @@ If the response includes `spec_guidance`, show it as a note:
 Note: [spec_guidance text]
 ```
 
+If `get_next_feature` returns in-progress features (409), the response includes proof status:
+- Features marked **completable** have passing proofs and are ready to finish — offer to run `/manifest:complete`
+- Features **still needing work** have failing or missing proofs — offer to resume with `/manifest:start`
+
 If no feature is found:
 
 ```

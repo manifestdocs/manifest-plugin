@@ -13,7 +13,7 @@
   "mcpServers": {
     "mcp": {
       "type": "http",
-      "url": "http://localhost:17010/mcp"
+      "url": "http://localhost:4242/mcp"
     }
   },
   "hooks": {

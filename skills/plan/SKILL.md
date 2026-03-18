@@ -13,8 +13,8 @@ Run an interactive feature planning session using structured reasoning phases.
 - Call `list_projects` with `directory_path` set to the current working directory
 - If no project found, offer to run `/manifest:init` first
 - If an MCP connection error occurs, the server is not running -- tell the user to start it with `manifest serve`
-- Call `get_project_instructions` to read the project's tech stack, conventions, and architectural decisions
 - Call `render_feature_tree` to see what features already exist
+- Use `find_features` to locate the root feature or relevant parent feature set, then call `get_feature` with `view="full"` to read project-wide and feature-set context from the breadcrumb
 - This context constrains your decomposition -- don't propose features that duplicate existing ones, and respect established patterns
 
 ### 2. Gather input

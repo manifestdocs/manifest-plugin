@@ -147,7 +147,7 @@ Versions organize features into releases:
 
 The plugin also exposes MCP tools for programmatic access:
 
-**Discovery:** `list_projects`, `get_project_instructions`, `find_features`, `get_feature`, `get_active_feature`, `render_feature_tree`, `get_project_history`
+**Discovery:** `list_projects`, `find_features`, `get_feature`, `render_feature_tree`, `get_project_history`
 
 **Setup:** `init_project`, `add_project_directory`, `plan`, `create_feature`
 
